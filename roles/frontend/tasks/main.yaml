@@ -1,51 +1,47 @@
-- name: frontend setup
-  hosts: frontend
-  become: yes
-  tasks:
-  - name: disable default nginx
-    ansible.builtin.shell: dnf module disable nginx -y
+- name: disable default nginx
+  ansible.builtin.shell: dnf module disable nginx -y
 
-  - name: enable nginx 1.24
-    ansible.builtin.shell: dnf module enable nginx:1.24 -y
+- name: enable nginx 1.24
+  ansible.builtin.shell: dnf module enable nginx:1.24 -y
 
-  - name: install nginx
-    ansible.builtin.dnf:
-      name: nginx
-      state: installed
+- name: install nginx
+  ansible.builtin.dnf:
+    name: nginx
+    state: installed
 
-  - name: start and enable nginx
-    ansible.builtin.service:
-      name: nginx
-      enabled: yes
-      state: started 
+- name: start and enable nginx
+  ansible.builtin.service:
+    name: nginx
+    enabled: yes
+    state: started 
 
-  - name: remove default nginx page
-    ansible.builtin.file:
-      path: /usr/share/nginx/html/*
-      state: absent
+- name: remove default nginx page
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/*
+    state: absent
 
-  - name: download the source code
-    ansible.builtin.get_url:
-      url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
-      dest: /tmp/frontend.zip       
+- name: download the source code
+  ansible.builtin.get_url:
+    url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+    dest: /tmp/frontend.zip       
 
-  - name: deploy the source code
-    ansible.builtin.unarchive:
-      src: /tmp/frontend.zip
-      dest: /usr/share/nginx/html
-      remote_src: yes    
+- name: deploy the source code
+  ansible.builtin.unarchive:
+    src: /tmp/frontend.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes    
 
-  - name: remove default nginx configuration
-    ansible.builtin.file:
-      path: /etc/nginx/nginx.conf
-      state: absent
+- name: remove default nginx configuration
+  ansible.builtin.file:
+    path: /etc/nginx/nginx.conf
+    state: absent
 
-  - name: create configuration file for nginx
-    ansible.builtin.template:
-      src: nginx.conf.j2
-      dest: /etc/nginx/nginx.conf
+- name: create configuration file for nginx
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
 
-  - name: restart nginx
-    ansible.builtin.service:
-      name: nginx
-      state: restarted       
+- name: restart nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted       
