@@ -9,7 +9,7 @@
     tasks_from: nodejs-setup.yaml
 
 - name: create mongo repo
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: mongo.repo
     dest: /etc/yum.repos.d/mongo.repo
 
