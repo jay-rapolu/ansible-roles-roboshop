@@ -19,7 +19,7 @@
     state: installed    
 
 - name: load data to mongodb
-  ansible.builtin.shell: mongosh --host mongodb-ansible.jayachandrarapolu.site < /app/db/master-data.js
+  ansible.builtin.shell: "mongosh --host {{ component }}.jayachandrarapolu.site < /app/db/master-data.js"
 
 - name: nodejs setup
   include_role:
