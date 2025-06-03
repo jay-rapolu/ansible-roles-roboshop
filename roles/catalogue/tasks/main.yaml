@@ -1,0 +1,27 @@
+- name: app setup
+  include_role:
+    name: "common"
+    tasks_from: app-setup.yaml
+
+- name: nodejs setup
+  include_role:
+    name: "common"
+    tasks_from: nodejs-setup.yaml
+
+- name: create mongo repo
+  ansible.builtin.template:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: install mongodb client
+  ansible.builtin.dnf:
+    name: mongodb-mongosh
+    state: installed    
+
+- name: load data to mongodb
+  ansible.builtin.shell: mongosh --host mongodb-ansible.jayachandrarapolu.site < /app/db/master-data.js
+
+- name: nodejs setup
+  include_role:
+    name: "common"
+    tasks_from: systemd-setup.yaml

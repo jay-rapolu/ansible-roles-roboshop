@@ -1,0 +1,5 @@
+CATALOGUE_HOST: catalogue.jayachandrarapolu.site
+USER_HOST: localhost 
+CART_HOST: localhost
+SHIPPING_HOST: localhost
+PAYMENT_HOST: localhost
