@@ -1,0 +1,4 @@
+CART_HOST: cart.jayachandrarapolu.site
+DB_HOST: mysql.jayachandrarapolu.site
+DB_USER: root
+DB_PASSWORD: RoboShop@1
