@@ -1,0 +1,5 @@
+CART_HOST: cart.jayachandrarapolu.site
+USER_HOST: user.jayachandrarapolu.site
+AMQP_HOST: rabbitmq.jayachandrarapolu.site
+AMQP_USER: roboshop
+AMQP_PASS: roboshop123
