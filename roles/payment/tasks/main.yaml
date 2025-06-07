@@ -1,3 +1,8 @@
+- name: app setup
+  ansible.builtin.import_role:
+    name: "common"
+    tasks_from: app-setup.yaml
+
 - name: install python3 packages
   ansible.builtin.dnf:
     name: "{{ item }}"
@@ -6,11 +11,6 @@
   - python3 
   - gcc 
   - python3-devel
-
-- name: app setup
-  ansible.builtin.import_role:
-    name: "common"
-    tasks_from: app-setup.yaml
 
 - name: install dependencies
   ansible.builtin.pip:
