@@ -13,9 +13,7 @@
   - python3-devel
 
 - name: install dependencies
-  ansible.builtin.pip:
-    requirements: requirements.txt
-    executable: pip3.9
+  ansible.builtin.command: pip3.9 install -r requirements.txt
   args:
     chdir: /app
 
