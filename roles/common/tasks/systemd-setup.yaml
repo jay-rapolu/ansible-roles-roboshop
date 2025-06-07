@@ -10,5 +10,6 @@
 - name: "start and enable {{ component }}"
   ansible.builtin.service:
     name: "{{ component }}"
-    enabled: yes
     state: restarted
+    enabled: true
+    

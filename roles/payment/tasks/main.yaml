@@ -3,19 +3,10 @@
     name: "common"
     tasks_from: app-setup.yaml
 
-- name: install python3 packages
-  ansible.builtin.dnf:
-    name: "{{ item }}"
-    state: installed
-  loop:
-  - python3 
-  - gcc 
-  - python3-devel
-
-- name: install dependencies
-  ansible.builtin.command: pip3.9 install -r requirements.txt
-  args:
-    chdir: /app
+- name: python setup
+  ansible.builtin.import_role:
+    name: "common"
+    tasks_from: python-setup.yaml
 
 - name: systemd setup
   ansible.builtin.import_role:
