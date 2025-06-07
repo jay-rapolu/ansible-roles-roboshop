@@ -36,9 +36,9 @@
       remote_src: yes
 
   - name: Install pip modules
-    ansible.builtin.pip:
-      requirements: /app/requirements.txt
-      executable: pip3.9
+    ansible.builtin.command: pip3.9 install -r requirements.txt
+    args:
+      chdir: /app
 
   - name: create service file for application
     ansible.builtin.copy:
