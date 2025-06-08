@@ -6,6 +6,7 @@
 - name: Reload systemd daemon
   ansible.builtin.systemd_service:
     daemon_reload: true
+    force: true
 
 - name: "start and enable {{ component }}"
   ansible.builtin.service:

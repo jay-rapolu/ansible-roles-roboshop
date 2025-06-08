@@ -3,9 +3,9 @@
     name: "{{ item }}"
     state: present
   loop:
-    - python3
-    - gcc
-    - python3-devel
+  - python3
+  - gcc
+  - python3-devel
 
 - name: Install pip modules
   ansible.builtin.pip:

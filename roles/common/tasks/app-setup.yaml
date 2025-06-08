@@ -10,6 +10,7 @@
     home: /app
     create_home: true
     system: true
+    state: present
 
 - name: download the source code
   ansible.builtin.get_url:
